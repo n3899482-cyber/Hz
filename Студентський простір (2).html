@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Студентський простір</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a2230;--mute:#667085;--line:#e3e6eb;--acc:#1f4fd8;--acc-ink:#fff;--bad:#c93a32;--warn:#a86400;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f141b;--card:#171d27;--ink:#e6eaf1;--mute:#929cae;--line:#262e3b;--acc:#6f95ff;--acc-ink:#0f141b;--bad:#ff8077;--warn:#e8b04a}}
+:root[data-theme="dark"]{--bg:#0f141b;--card:#171d27;--ink:#e6eaf1;--mute:#929cae;--line:#262e3b;--acc:#6f95ff;--acc-ink:#0f141b;--bad:#ff8077;--warn:#e8b04a}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 Onest,system-ui,sans-serif;padding-bottom:56px}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px}
+h1{font-size:24px;font-weight:700;margin:0;letter-spacing:-.01em}
+h2{font-size:17px;font-weight:700;margin:0 0 12px}
+.sub{color:var(--mute);margin:2px 0 0}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:2px 16px;margin-bottom:16px}
+.card.row{padding:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input,select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:9px 12px;min-width:0;flex:1}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+button{font:inherit;font-weight:600;cursor:pointer;border:0;border-radius:6px;padding:9px 16px;background:var(--acc);color:var(--acc-ink)}
+button.ghost{background:transparent;color:var(--mute);padding:6px 10px;font-weight:500}
+button.ghost:hover{color:var(--bad)}
+button.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+#theme{border:1px solid var(--line);font-size:13px;padding:6px 12px}
+.pane{display:none}.pane.on{display:block}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;background:transparent;color:var(--mute);border-radius:0;padding:14px 2px;font-size:13px;font-weight:500;border-top:2px solid transparent}
+nav button.on{color:var(--acc);border-top-color:var(--acc);font-weight:700}
+.days{display:flex;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
+.days button{flex:1;min-width:46px;background:transparent;color:var(--mute);border-radius:0;border-bottom:2px solid transparent;padding:10px 6px;font-weight:500}
+.days button.on{color:var(--ink);border-bottom-color:var(--acc);font-weight:700}
+.item{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border:0}
+.item .t{font-weight:600;min-width:56px;color:var(--mute);font-variant-numeric:tabular-nums}
+.item .g{flex:1}.item small{color:var(--mute);display:block}
+.done .g{text-decoration:line-through;color:var(--mute)}
+input[type=checkbox]{flex:0 0 20px;width:20px;height:20px;padding:0;accent-color:var(--acc)}
+.empty{color:var(--mute);padding:16px 0}
+.clock{font-size:56px;font-weight:700;text-align:center;letter-spacing:-.02em;margin:8px 0;font-variant-numeric:tabular-nums}
+.pill{color:var(--mute);font-weight:600}
+.late{color:var(--bad)}.soon{color:var(--warn)}
+.avg{font-size:32px;font-weight:700;line-height:1.2}
+textarea{width:100%;min-height:200px;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;resize:vertical}
+@media(min-width:860px){
+ body{padding:0 0 0 220px}
+ nav{top:0;right:auto;bottom:0;width:220px;flex-direction:column;border-top:0;border-right:1px solid var(--line);padding:24px 12px;gap:2px}
+ nav::before{content:"Студентський простір";font-weight:800;font-size:15px;padding:0 12px 20px}
+ nav button{flex:none;text-align:left;padding:10px 12px;border-radius:6px;border-top:0;font-size:15px}
+ nav button.on{background:var(--bg)}
+ .wrap{padding-top:32px}
+}
+
+:root{--bg:#eceff4;--line:#cdd4de;--shadow:0 1px 2px rgba(16,24,40,.06),0 2px 8px rgba(16,24,40,.04)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0f16;--line:#2d374a;--shadow:none}}
+:root[data-theme="dark"]{--bg:#0b0f16;--line:#2d374a;--shadow:none}
+.wrap{max-width:900px}
+.card,.panel,.stat,.hero{box-shadow:var(--shadow)}
+.hero{display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:16px 18px;margin-bottom:20px}
+.hero .main{flex:1;min-width:220px}
+.chip{display:inline-block;background:var(--acc);color:var(--acc-ink);font-weight:700;font-size:13px;padding:2px 10px;border-radius:4px;margin-bottom:6px}
+.hero h1{font-size:19px;line-height:1.3}
+.date{text-align:center;border-left:1px solid var(--line);padding-left:18px}
+.date b{display:block;font-size:40px;line-height:1;font-weight:800}
+.date span{color:var(--mute);font-size:13px;display:block;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.panel{grid-column:span 2;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px}
+.panel.wide{grid-column:1/-1}
+.panel h2{font-size:15px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px}
+.stat b{display:block;font-size:26px;font-weight:800;line-height:1.1}
+.stat span{color:var(--mute);font-size:13px}
+#now .lbl{color:var(--acc);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+#now .big{font-size:26px;font-weight:800;margin:2px 0}
+.panel .item:first-of-type{padding-top:4px}
+nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;padding:8px 2px}
+@media(max-width:560px){.stat{grid-column:span 2}.panel{grid-column:1/-1}.date{border:0;padding:0;text-align:left}.date b{display:inline;font-size:28px}.date span{display:inline;margin-left:6px}}
+@media(min-width:860px){nav button{flex-direction:row;gap:12px;font-size:15px}.wrap{padding-top:28px}}
+
+.brand,.side-foot{display:none}
+.week{display:none}
+@media(min-width:860px){
+ .wrap{max-width:1280px;padding:28px 32px}
+ nav{padding:20px 14px}
+ nav::before{content:none}
+ .brand{display:flex;gap:12px;align-items:center;padding:0 8px 22px}
+ .logo{width:40px;height:40px;border-radius:10px;background:var(--acc);color:var(--acc-ink);display:grid;place-items:center;flex:0 0 40px}
+ .logo svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+ .brand b{display:block;font-size:16px;line-height:1.2}.brand small{color:var(--mute);font-size:12px}
+ .side-foot{display:flex;flex-direction:column;margin-top:auto;padding:14px 8px 0;border-top:1px solid var(--line)}
+ .side-foot b{font-size:30px;font-weight:800;line-height:1}
+ .side-foot span{color:var(--mute);font-size:13px;margin:2px 0 10px;display:block}
+ .side-foot a{color:var(--mute);font-size:13px;text-decoration:none;padding:5px 0}.side-foot a:hover{color:var(--acc)}
+ .days,.lcard{display:none}
+ .week{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+ .col{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;min-height:360px;box-shadow:var(--shadow)}
+ .col.today{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc)}
+ .wd{font-weight:700;padding:4px 2px 8px;border-bottom:1px solid var(--line)}.wd small{display:block;color:var(--mute);font-weight:400;font-size:12px}
+ .wl{margin-top:8px;padding:8px 10px;border-radius:6px;background:var(--bg);border-left:3px solid var(--acc)}
+ .wl span{display:block;color:var(--mute);font-size:12px;font-variant-numeric:tabular-nums}.wl b{display:block;font-weight:600;line-height:1.3}.wl small{color:var(--mute)}
+ .pane.two.on{display:grid;grid-template-columns:340px minmax(0,1fr);gap:0 16px;align-items:start}
+ .pane.two>h2,.pane.two>textarea{grid-column:1/-1}
+ #p-focus .card{max-width:560px;margin:16px auto}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero"><div class="main"><span class="chip">11-ІТ</span><h1>Рівненський фаховий коледж НУБіП України</h1><p class="sub">Відділення загальноосвітньої підготовки · I семестр 2026–2027 н. р.</p></div><div class="date"><b id="dnum"></b><span id="today"></span></div><button class="ghost" id="theme" aria-label="Змінити тему" style="border:1px solid var(--line)">Тема</button></header>
+
+  <section class="pane on" id="p-home">
+    <div class="grid">
+      <div class="panel wide" id="now"></div>
+      <div class="stat"><b id="s-tasks">0</b><span>завдань відкрито</span></div>
+      <div class="stat"><b id="s-dead">–</b><span>найближчий дедлайн</span></div>
+      <div class="stat"><b id="s-avg">–</b><span>середній бал</span></div>
+      <div class="stat"><b id="s-foc">0</b><span>фокус-сесій</span></div>
+      <div class="panel"><h2>Пари сьогодні</h2><div id="h-les"></div></div>
+      <div class="panel"><h2>Найближчі дедлайни</h2><div id="h-dead"></div></div>
+      <div class="panel wide"><h2>Невиконані завдання</h2><div id="h-todo"></div></div>
+    </div>
+  </section>
+
+  <section class="pane" id="p-schedule">
+    <h2>Розклад</h2>
+    <div class="days" id="days"></div>
+    <div class="card lcard"><div id="lessons"></div></div>
+    <div class="week" id="week"></div>
+  </section>
+
+  <section class="pane two" id="p-todo">
+    <h2>Завдання</h2>
+    <div class="card row"><input id="t-in" placeholder="Що треба зробити?" aria-label="Нове завдання"><button id="t-add">Додати</button></div>
+    <div class="card"><div id="todos"></div></div>
+  </section>
+
+  <section class="pane two" id="p-dead">
+    <h2>Дедлайни</h2>
+    <div class="card row"><input id="d-name" placeholder="Курсова, реферат, іспит…" aria-label="Назва"><input id="d-date" type="date" aria-label="Дата" style="flex:0 0 150px"><button id="d-add">Додати</button></div>
+    <div class="card"><div id="deads"></div></div>
+  </section>
+
+  <section class="pane" id="p-focus">
+    <h2>Фокус-таймер</h2>
+    <div class="card">
+      <div style="text-align:center"><span class="pill" id="mode">Робота</span></div>
+      <div class="clock" id="clock">25:00</div>
+      <div class="row" style="justify-content:center"><button id="f-go">Старт</button><button class="alt" id="f-mode">Перерва 5 хв</button><button class="ghost" id="f-reset">Скинути</button></div>
+      <p class="sub" style="text-align:center;margin:14px 0 0" id="f-count"></p>
+    </div>
+  </section>
+
+  <section class="pane two" id="p-grades">
+    <h2>Оцінки</h2>
+    <div class="card" style="padding:14px 16px"><div class="avg" id="avg">–</div><div class="sub" style="margin:0">середній бал зі 12</div></div>
+    <div class="card"><div id="grades"></div></div>
+    <h2 style="margin-top:22px">Нотатки</h2>
+    <textarea id="notes" placeholder="Швидкі думки, формули, контакти викладачів…" aria-label="Нотатки"></textarea>
+  </section>
+</div>
+
+<nav id="nav">
+  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-5 9 5-9 5zM7 12v5c3 2 7 2 10 0v-5"/></svg></div><div><b>Кабінет студента</b><small>РФК НУБіП · 11-ІТ</small></div></div>
+  <button data-p="home" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg><span>Головна</span></button>
+  <button data-p="schedule"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></svg><span>Розклад</span></button>
+  <button data-p="todo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg><span>Завдання</span></button>
+  <button data-p="dead"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Дедлайни</span></button>
+  <button data-p="focus"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4M9 2h6"/></svg><span>Фокус</span></button>
+  <button data-p="grades"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-5 9 5-9 5zM7 12v5c3 2 7 2 10 0v-5"/></svg><span>Оцінки</span></button>
+  <div class="side-foot"><b id="sf-time"></b><span id="sf-date"></span><a href="https://rfc.nubip.edu.ua/to-a-student/lessons-schedule/" target="_blank" rel="noopener">Розклад на сайті коледжу ↗</a><a href="https://rfc.nubip.edu.ua/" target="_blank" rel="noopener">Сайт коледжу ↗</a></div>
+</nav>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var KEY="student-hub-v1",S={lessons:[],todos:[],deads:[],grades:[],notes:"",sessions:0,theme:""};
+try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);for(var k in p)S[k]=p[k]}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+if(!S.lessons.length&&!S.grades.length){
+ var TM=["08:30","10:10","11:50"];
+ [1,2,3,4,5].forEach(function(d){TM.forEach(function(t,i){S.lessons.push({id:d*10+i,d:d,t:t,n:"Інформатика",r:String(200+d*3+i)})})});
+ for(var i=0;i<8;i++)S.grades.push({id:Date.now()+i,n:"Інформатика",v:Math.floor(Math.random()*9)+2});
+ save();
+}
+if(!S.sat){
+ ["08:30","10:10"].forEach(function(t,i){S.lessons.push({id:60+i,d:6,t:t,n:"Інформатика",r:String(218+i)})});
+ S.sat=1;save();
+}
+if(!S.g12){S.grades.forEach(function(g){g.v=10});S.g12=1;save()}
+if(!S.rfk){
+ var TM2=["08:30","10:00","11:30","13:00"];
+ var R={
+  1:[["Укр. літ. / Хімія","Миронюк / Зінч"],["Географія / Фізика, астрономія","Малимон / Грицик"],["Математика","Герасимчук"]],
+  2:[["Фізична культура","Турчик"],["Укр. мова","Миронюк"],["Біологія, екологія","Зінч"]],
+  3:[["Хімія","Зінч"],["Фізика, астрономія","Грицик"],["Інформатика","Гребіненко"]],
+  4:[["Заруб. літ.","Ткачук"],["Історія: України і світ","Коняхін"],["Іноземна мова","Музичук"]],
+  5:[["Укр. літ.","Миронюк"],["Захист України","Шмігель"],["Математика","Герасимчук"],["Фізика, астрономія","Грицик"]]
+ };
+ S.lessons=[];
+ for(var d in R)R[d].forEach(function(x,i){S.lessons.push({id:+d*10+i,d:+d,t:TM2[i],n:x[0],r:x[1]})});
+ S.rfk=1;save();
+}
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+var DN=["Нд","Пн","Вт","Ср","Чт","Пт","Сб"],ORDER=[1,2,3,4,5,6,0];
+var day=new Date().getDay();if(day===0)day=1;
+var _n=new Date();$("dnum").textContent=_n.getDate();$("today").textContent=_n.toLocaleDateString("uk-UA",{month:"long",year:"numeric"})+" · "+_n.toLocaleDateString("uk-UA",{weekday:"long"});
+
+/* theme */
+function applyTheme(){if(S.theme)document.documentElement.setAttribute("data-theme",S.theme)}
+applyTheme();
+$("theme").onclick=function(){var dark=S.theme?S.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;S.theme=dark?"light":"dark";applyTheme();save()};
+
+/* nav */
+$("nav").onclick=function(e){var b=e.target.closest("button");if(!b)return;
+ document.querySelectorAll("nav button").forEach(function(x){x.classList.toggle("on",x===b)});
+ document.querySelectorAll(".pane").forEach(function(x){x.classList.toggle("on",x.id==="p-"+b.dataset.p)});if(b.dataset.p==="home")renderHome();scrollTo(0,0)};
+
+/* schedule */
+function renderDays(){$("days").innerHTML=ORDER.map(function(d){return '<button data-d="'+d+'" class="'+(d===day?"on":"")+'">'+DN[d]+'</button>'}).join("")}
+$("days").onclick=function(e){var b=e.target.closest("button");if(!b)return;day=+b.dataset.d;renderDays();renderLessons()};
+function renderBase(){
+ var L=S.lessons.filter(function(l){return l.d===day}).sort(function(a,b){return a.t<b.t?-1:1});
+ $("lessons").innerHTML=L.length?L.map(function(l){return '<div class="item"><div class="t">'+esc(l.t)+'</div><div class="g">'+esc(l.n)+(l.r?'<small>'+esc(l.r)+'</small>':'')+'</div></div>'}).join(""):'<div class="empty">На цей день пар немає.</div>'}
+
+var STIMES=["08:00","09:10","10:20","11:30"],DNL=["","понеділок","вівторок","середу","четвер","п’ятницю"];
+function fd(d){return d.toLocaleDateString("uk-UA",{day:"numeric",month:"long"})}
+function satRep(d){var a=new Date(2026,10,7),w=Math.round((d-a)/6048e5);return (((3+w)%5)+5)%5+1}
+function nextSat(){var d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+((6-d.getDay()+7)%7));return d}
+function renderLessons(){
+ if(day!==6){renderBase();return}
+ var sd=nextSat(),rep=satRep(sd);
+ var L=S.lessons.filter(function(l){return l.d===rep}).sort(function(a,b){return a.t<b.t?-1:1});
+ var more=[1,2,3].map(function(k){var x=new Date(sd);x.setDate(x.getDate()+7*k);return fd(x)+" – за "+DNL[satRep(x)]}).join("; ");
+ $("lessons").innerHTML='<div class="item" style="display:block"><strong>Субота, '+fd(sd)+'</strong><small>Пари за '+DNL[rep]+' · скорочений розклад суботи</small></div>'+
+  L.map(function(l,i){return '<div class="item"><div class="t">'+STIMES[i]+'</div><div class="g">'+esc(l.n)+(l.r?'<small>'+esc(l.r)+'</small>':'')+'</div></div>'}).join("")+
+  '<div class="empty">Наступні суботи: '+more+'</div>'}
+
+/* todos */
+function renderTodos(){
+ var T=S.todos.slice().sort(function(a,b){return a.x-b.x});
+ $("todos").innerHTML=T.length?T.map(function(t){return '<div class="item '+(t.x?"done":"")+'"><input type="checkbox" data-c="'+t.id+'" '+(t.x?"checked":"")+' aria-label="Виконано"><div class="g">'+esc(t.n)+'</div><button class="ghost" data-del="'+t.id+'" aria-label="Видалити">✕</button></div>'}).join(""):'<div class="empty">Список порожній. Запишіть перше завдання.</div>'}
+$("todos").onclick=function(e){var c=e.target.closest("[data-c]"),d=e.target.closest("[data-del]");
+ if(c){S.todos.forEach(function(t){if(t.id==c.dataset.c)t.x=c.checked?1:0})}
+ if(d){S.todos=S.todos.filter(function(t){return t.id!=d.dataset.del})}
+ if(c||d){save();renderTodos()}};
+function addTodo(){var n=$("t-in").value.trim();if(!n)return;S.todos.push({id:Date.now(),n:n,x:0});$("t-in").value="";save();renderTodos()}
+$("t-add").onclick=addTodo;$("t-in").onkeydown=function(e){if(e.key==="Enter")addTodo()};
+
+/* deadlines */
+function renderDeads(){
+ var D=S.deads.slice().sort(function(a,b){return a.dt<b.dt?-1:1}),now=new Date();now.setHours(0,0,0,0);
+ $("deads").innerHTML=D.length?D.map(function(d){
+  var left=Math.round((new Date(d.dt+"T00:00:00")-now)/864e5),cls=left<0?"late":left<=3?"soon":"",txt=left<0?"прострочено на "+(-left)+" дн.":left===0?"сьогодні":left===1?"завтра":"через "+left+" дн.";
+  return '<div class="item"><div class="g">'+esc(d.n)+'<small>'+new Date(d.dt+"T00:00:00").toLocaleDateString("uk-UA",{day:"numeric",month:"long"})+'</small></div><strong class="'+cls+'">'+txt+'</strong><button class="ghost" data-del="'+d.id+'" aria-label="Видалити">✕</button></div>'}).join(""):'<div class="empty">Дедлайнів немає. Додайте найближчий.</div>'}
+$("deads").onclick=function(e){var b=e.target.closest("[data-del]");if(!b)return;S.deads=S.deads.filter(function(d){return d.id!=b.dataset.del});save();renderDeads()};
+$("d-add").onclick=function(){var n=$("d-name").value.trim(),dt=$("d-date").value;if(!n||!dt)return;S.deads.push({id:Date.now(),n:n,dt:dt});$("d-name").value="";save();renderDeads()};
+
+/* focus timer */
+var work=true,left=25*60,timer=null;
+function fmt(){var m=Math.floor(left/60),s=left%60;$("clock").textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;document.title=($("f-go").textContent==="Пауза"?$("clock").textContent+" · ":"")+"Студентський простір"}
+function setMode(w){work=w;left=(w?25:5)*60;$("mode").textContent=w?"Робота":"Перерва";$("f-mode").textContent=w?"Перерва 5 хв":"Назад до роботи";stop();fmt()}
+function stop(){clearInterval(timer);timer=null;$("f-go").textContent="Старт"}
+function counter(){$("f-count").textContent="Сьогодні сесій: "+S.sessions+" × 25 хв"}
+$("f-go").onclick=function(){
+ if(timer){stop();fmt();return}
+ $("f-go").textContent="Пауза";
+ timer=setInterval(function(){left--;if(left<=0){if(work){S.sessions++;save();counter()}setMode(!work);try{navigator.vibrate&&navigator.vibrate(300)}catch(e){}return}fmt()},1000);fmt()};
+$("f-mode").onclick=function(){setMode(!work)};
+$("f-reset").onclick=function(){setMode(work)};
+
+/* grades */
+function renderGrades(){
+ var G=S.grades;
+ $("avg").textContent=G.length?(G.reduce(function(a,g){return a+g.v},0)/G.length).toFixed(1):"–";
+ $("grades").innerHTML=G.length?G.map(function(g){return '<div class="item"><div class="g">'+esc(g.n)+'</div><strong>'+g.v+'</strong></div>'}).join(""):'<div class="empty">Оцінок поки немає.</div>'}
+
+/* notes */
+$("notes").value=S.notes;$("notes").oninput=function(){S.notes=$("notes").value;save()};
+
+/* home */
+var ST=["08:30","10:00","11:30","13:00"],EN=["09:50","11:20","12:50","14:20"],SEN=["09:00","10:10","11:20","12:30"];
+function tm(x){var a=x.split(":");return +a[0]*60+ +a[1]}
+function todayList(){var n=new Date(),w=n.getDay();if(w===0)return[];var sat=w===6,rep=sat?satRep(new Date(n.getFullYear(),n.getMonth(),n.getDate())):w;
+ return S.lessons.filter(function(l){return l.d===rep}).sort(function(a,b){return a.t<b.t?-1:1}).map(function(l,i){return{n:l.n,r:l.r,s:sat?STIMES[i]:ST[i],e:sat?SEN[i]:EN[i]}})}
+function renderHome(){
+ var L=todayList(),n=new Date(),m=n.getHours()*60+n.getMinutes(),cur=null,nxt=null;
+ L.forEach(function(l){if(m>=tm(l.s)&&m<tm(l.e))cur=l;else if(m<tm(l.s)&&!nxt)nxt=l});
+ var h='<div class="lbl">Сьогодні</div><div class="big">'+(L.length?"Пари закінчились":"Пар немає, відпочиваємо")+'</div>';
+ if(cur)h='<div class="lbl">Зараз іде</div><div class="big">'+esc(cur.n)+'</div><small>'+cur.s+"–"+cur.e+" · "+esc(cur.r)+" · ще "+(tm(cur.e)-m)+" хв</small>";
+ else if(nxt)h='<div class="lbl">Наступна пара</div><div class="big">'+esc(nxt.n)+'</div><small>о '+nxt.s+" · "+esc(nxt.r)+" · через "+(tm(nxt.s)-m)+" хв</small>";
+ $("now").innerHTML=h;
+ $("h-les").innerHTML=L.length?L.map(function(l){return '<div class="item"><div class="t">'+l.s+'</div><div class="g">'+esc(l.n)+'<small>'+esc(l.r)+'</small></div></div>'}).join(""):'<div class="empty">Сьогодні пар немає.</div>';
+ var T=S.todos.filter(function(t){return !t.x});
+ $("s-tasks").textContent=T.length;
+ $("h-todo").innerHTML=T.length?T.slice(0,5).map(function(t){return '<div class="item"><div class="g">'+esc(t.n)+'</div></div>'}).join(""):'<div class="empty">Усе виконано або ще нічого не додано.</div>';
+ var t0=new Date();t0.setHours(0,0,0,0);
+ var D=S.deads.map(function(d){return{n:d.n,left:Math.round((new Date(d.dt+"T00:00:00")-t0)/864e5)}}).filter(function(d){return d.left>=0}).sort(function(a,b){return a.left-b.left});
+ $("s-dead").textContent=D.length?(D[0].left===0?"сьогодні":D[0].left+" дн."):"–";
+ $("h-dead").innerHTML=D.length?D.slice(0,4).map(function(d){return '<div class="item"><div class="g">'+esc(d.n)+'</div><strong class="'+(d.left<=3?"soon":"")+'">'+(d.left===0?"сьогодні":"через "+d.left+" дн.")+'</strong></div>'}).join(""):'<div class="empty">Дедлайнів немає. Додайте курсову, реферат чи іспит.</div>';
+ $("s-avg").textContent=S.grades.length?(S.grades.reduce(function(a,g){return a+g.v},0)/S.grades.length).toFixed(1):"–";
+ $("s-foc").textContent=S.sessions}
+var DF=["","Понеділок","Вівторок","Середа","Четвер","П’ятниця","Субота"];
+function renderWeek(){
+ var tw=new Date().getDay(),h="";
+ [1,2,3,4,5,6].forEach(function(d){
+  var rp=d,sat=d===6,sub="";
+  if(sat){var sd=nextSat();rp=satRep(sd);sub=fd(sd)+" · за "+DNL[rp]}
+  var L=S.lessons.filter(function(l){return l.d===rp}).sort(function(a,b){return a.t<b.t?-1:1});
+  h+='<div class="col'+(tw===d?" today":"")+'"><div class="wd">'+DF[d]+(sub?'<small>'+sub+'</small>':'')+'</div>'+(L.length?L.map(function(l,i){return '<div class="wl"><span>'+(sat?STIMES[i]:ST[i])+'</span><b>'+esc(l.n)+'</b><small>'+esc(l.r)+'</small></div>'}).join(""):'<div class="empty">Пар немає</div>')+'</div>'});
+ $("week").innerHTML=h}
+function tick(){var n=new Date();$("sf-time").textContent=n.toLocaleTimeString("uk-UA",{hour:"2-digit",minute:"2-digit"});$("sf-date").textContent=n.toLocaleDateString("uk-UA",{weekday:"long",day:"numeric",month:"long"})}
+tick();setInterval(tick,20000);
+setInterval(renderHome,60000);
+
+renderDays();renderLessons();renderHome();renderWeek();renderTodos();renderDeads();renderGrades();counter();fmt();
+})();
+</script>
+</body>
+</html>
